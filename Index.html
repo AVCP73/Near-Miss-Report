@@ -716,7 +716,7 @@ document.getElementById('send-code-btn').addEventListener('click', async () => {
   const email = document.getElementById('signin-email').value.trim();
   if (!email) return;
   signinMsg.innerHTML = '';
-  const { error } = await sb.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+  const { error } = await sb.auth.signInWithOtp({ email, options: { shouldCreateUser: true } });
   if (error) {
     signinMsg.innerHTML = `<div class="msg error">${error.message}</div>`;
     return;
@@ -729,7 +729,7 @@ document.getElementById('send-code-btn').addEventListener('click', async () => {
 
 document.getElementById('resend-code-btn').addEventListener('click', async () => {
   if (!pendingEmail) return;
-  await sb.auth.signInWithOtp({ email: pendingEmail, options: { shouldCreateUser: false } });
+  await sb.auth.signInWithOtp({ email: pendingEmail, options: { shouldCreateUser: true } });
   signinMsg.innerHTML = `<div class="msg success">Code resent to ${pendingEmail}.</div>`;
 });
 
